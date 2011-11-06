@@ -63,11 +63,9 @@ class JAdapter extends JObject
 	/**
 	 * Constructor
 	 *
-	 * @param   string   $basepath       Base Path of the adapters
-	 * @param   string   $classprefix    Class prefix of adapters
-	 * @param   string   $adapterfolder  Name of folder to append to base path
-	 *
-	 * @return  JAdapter  JAdapter object
+	 * @param   string  $basepath       Base Path of the adapters
+	 * @param   string  $classprefix    Class prefix of adapters
+	 * @param   string  $adapterfolder  Name of folder to append to base path
 	 *
 	 * @since   11.1
 	 */
@@ -95,15 +93,15 @@ class JAdapter extends JObject
 	/**
 	 * Set an adapter by name
 	 *
-	 * @param   string  $name		Adapter name
-	 * @param   object  $adapter	Adapter object
-	 * @param   array   $options	Adapter options
+	 * @param   string  $name      Adapter name
+	 * @param   object  &$adapter  Adapter object
+	 * @param   array   $options   Adapter options
 	 *
 	 * @return  boolean  True if successful
 	 *
 	 * @since   11.1
 	 */
-	public function setAdapter($name, &$adapter = null, $options = Array())
+	public function setAdapter($name, &$adapter = null, $options = array())
 	{
 		if (!is_object($adapter))
 		{
@@ -141,7 +139,7 @@ class JAdapter extends JObject
 	 *
 	 * @since   11.1
 	 */
-	public function getAdapter($name, $options = Array())
+	public function getAdapter($name, $options = array())
 	{
 		if (!array_key_exists($name, $this->_adapters))
 		{

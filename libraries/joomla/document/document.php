@@ -10,6 +10,7 @@
 defined('JPATH_PLATFORM') or die();
 
 JLoader::register('JDocumentRenderer', dirname(__FILE__) . '/renderer.php');
+jimport('joomla.environment.response');
 jimport('joomla.filter.filteroutput');
 
 /**
@@ -201,8 +202,6 @@ class JDocument extends JObject
 	 *
 	 * @param   array  $options  Associative array of options
 	 *
-	 * @return  JDocument
-	 *
 	 * @since   11.1
 	 */
 	public function __construct($options = array())
@@ -369,14 +368,14 @@ class JDocument extends JObject
 	/**
 	 * Gets a meta tag.
 	 *
-	 * @param   string  $name        Value of name or http-equiv tag
-	 * @param   bool    $http_equiv  META type "http-equiv" defaults to null
+	 * @param   string   $name       Value of name or http-equiv tag
+	 * @param   boolean  $httpEquiv  META type "http-equiv" defaults to null
 	 *
 	 * @return  string
 	 *
 	 * @since   11.1
 	 */
-	public function getMetaData($name, $http_equiv = false)
+	public function getMetaData($name, $httpEquiv = false)
 	{
 		$result = '';
 		$name = strtolower($name);
@@ -384,13 +383,13 @@ class JDocument extends JObject
 		{
 			$result = $this->getGenerator();
 		}
-		else if ($name == 'description')
+		elseif ($name == 'description')
 		{
 			$result = $this->getDescription();
 		}
 		else
 		{
-			if ($http_equiv == true)
+			if ($httpEquiv == true)
 			{
 				$result = @$this->_metaTags['http-equiv'][$name];
 			}
@@ -423,7 +422,7 @@ class JDocument extends JObject
 		{
 			$this->setGenerator($content);
 		}
-		else if ($name == 'description')
+		elseif ($name == 'description')
 		{
 			$this->setDescription($content);
 		}

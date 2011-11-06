@@ -30,7 +30,7 @@ class JComponentHelper
 	 * Get the component information.
 	 *
 	 * @param   string   $option  The component option.
-	 * @param   boolean  $strict  If set and the component does not exist, the enabled attribue will be set to false.
+	 * @param   boolean  $strict  If set and the component does not exist, the enabled attribute will be set to false.
 	 *
 	 * @return  object   An object with the information for the component.
 	 *
@@ -46,9 +46,9 @@ class JComponentHelper
 			}
 			else
 			{
-				$result = new stdClass();
+				$result = new stdClass;
 				$result->enabled = $strict ? false : true;
-				$result->params = new JRegistry();
+				$result->params = new JRegistry;
 			}
 		}
 		else
@@ -100,7 +100,7 @@ class JComponentHelper
 	 * @param   string  $option  The component option.
 	 * @param   array   $params  The component parameters
 	 *
-	 * @return  void
+	 * @return  object
 	 *
 	 * @since   11.1
 	 */
@@ -221,7 +221,7 @@ class JComponentHelper
 		// Convert the params to an object.
 		if (is_string(self::$_components[$option]->params))
 		{
-			$temp = new JRegistry();
+			$temp = new JRegistry;
 			$temp->loadString(self::$_components[$option]->params);
 			self::$_components[$option]->params = $temp;
 		}

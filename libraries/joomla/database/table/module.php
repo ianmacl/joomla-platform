@@ -22,11 +22,9 @@ jimport('joomla.database.tableasset');
 class JTableModule extends JTable
 {
 	/**
-	 * Contructor.
+	 * Constructor.
 	 *
 	 * @param   database  &$db  A database connector object
-	 *
-	 * @return  JTableModule
 	 *
 	 * @since   11.1
 	 */
@@ -81,7 +79,7 @@ class JTableModule extends JTable
 	{
 		if (isset($array['params']) && is_array($array['params']))
 		{
-			$registry = new JRegistry();
+			$registry = new JRegistry;
 			$registry->loadArray($array['params']);
 			$array['params'] = (string) $registry;
 		}

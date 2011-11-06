@@ -25,8 +25,6 @@ class JTableCategory extends JTableNested
 	 *
 	 * @param   database  &$db  A database connector object
 	 *
-	 * @return  JTableCategory
-	 *
 	 * @since   11.1
 	 */
 	public function __construct(&$db)
@@ -170,14 +168,14 @@ class JTableCategory extends JTableNested
 	{
 		if (isset($array['params']) && is_array($array['params']))
 		{
-			$registry = new JRegistry();
+			$registry = new JRegistry;
 			$registry->loadArray($array['params']);
 			$array['params'] = (string) $registry;
 		}
 
 		if (isset($array['metadata']) && is_array($array['metadata']))
 		{
-			$registry = new JRegistry();
+			$registry = new JRegistry;
 			$registry->loadArray($array['metadata']);
 			$array['metadata'] = (string) $registry;
 		}
@@ -193,7 +191,7 @@ class JTableCategory extends JTableNested
 	}
 
 	/**
-	 * Overriden JTable::store to set created/modified and user id.
+	 * Overridden JTable::store to set created/modified and user id.
 	 *
 	 * @param   boolean  $updateNulls  True to update fields even if they are null.
 	 *

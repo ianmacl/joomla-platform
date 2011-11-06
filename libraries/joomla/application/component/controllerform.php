@@ -66,8 +66,6 @@ class JControllerForm extends JController
 	 *
 	 * @param   array  $config  An optional associative array of configuration settings.
 	 *
-	 * @return  JControllerForm  A JControllerForm object
-	 *
 	 * @see     JController
 	 * @since   11.1
 	 */
@@ -109,7 +107,6 @@ class JControllerForm extends JController
 		{
 			// @TODO Probably worth moving to an inflector class based on
 			// http://kuwamoto.org/2007/12/17/improved-pluralizing-in-php-actionscript-and-ror/
-
 
 			// Simple pluralisation based on public domain snippet by Paul Osman
 			// For more complex types, just manually set the variable in your class.
@@ -321,8 +318,11 @@ class JControllerForm extends JController
 					$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()));
 					$this->setMessage($this->getError(), 'error');
 					$this->setRedirect(
-						'index.php?option=' . $this->option . '&view=' . $this->view_item .
-						$this->getRedirectToItemAppend($recordId, $key)
+						JRoute::_(
+							'index.php?option=' . $this->option . '&view=' . $this->view_item .
+							$this->getRedirectToItemAppend($recordId, $key),
+							false
+						)
 					);
 
 					return false;
@@ -391,7 +391,7 @@ class JControllerForm extends JController
 			// Check-out failed, display a notice but allow the user to see the record.
 			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKOUT_FAILED', $model->getError()));
 			$this->setMessage($this->getError(), 'error');
-			$this->setRedirect('index.php?option=' . $this->option . '&view=' . $this->view_item . $this->getRedirectToItemAppend($recordId, $urlVar));
+			$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $this->view_item . $this->getRedirectToItemAppend($recordId, $urlVar), false));
 
 			return false;
 		}
@@ -400,7 +400,7 @@ class JControllerForm extends JController
 			// Check-out succeeded, push the new record id into the session.
 			$this->holdEditId($context, $recordId);
 			$app->setUserState($context . '.data', null);
-			$this->setRedirect('index.php?option=' . $this->option . '&view=' . $this->view_item . $this->getRedirectToItemAppend($recordId, $urlVar));
+			$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $this->view_item . $this->getRedirectToItemAppend($recordId, $urlVar), false));
 
 			return true;
 		}
@@ -563,8 +563,11 @@ class JControllerForm extends JController
 				$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()));
 				$this->setMessage($this->getError(), 'error');
 				$this->setRedirect(
-					'index.php?option=' . $this->option . '&view=' . $this->view_item .
-					$this->getRedirectToItemAppend($recordId, $urlVar)
+					JRoute::_(
+						'index.php?option=' . $this->option . '&view=' . $this->view_item .
+						$this->getRedirectToItemAppend($recordId, $urlVar),
+						false
+					)
 				);
 
 				return false;
@@ -660,7 +663,7 @@ class JControllerForm extends JController
 			// Check-in failed, so go back to the record and display a notice.
 			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()));
 			$this->setMessage($this->getError(), 'error');
-			$this->setRedirect('index.php?option=' . $this->option . '&view=' . $this->view_item . $this->getRedirectToItemAppend($recordId, $key));
+			$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $this->view_item . $this->getRedirectToItemAppend($recordId, $key), false));
 
 			return false;
 		}

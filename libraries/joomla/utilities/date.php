@@ -82,7 +82,6 @@ class JDate extends DateTime
 	 * @param   string  $date  String in a format accepted by strtotime(), defaults to "now".
 	 * @param   mixed   $tz    Time zone to be used for the date.
 	 *
-	 * @return  void
 	 * @since   11.1
 	 *
 	 * @throws  JException
@@ -155,16 +154,12 @@ class JDate extends DateTime
 				$value = $this->format('z', true);
 				break;
 
-			case 'day':
-				$value = $this->format('d', true);
-				break;
-
-			case 'hour':
-				$value = $this->format('H', true);
-				break;
-
 			case 'isleapyear':
 				$value = (boolean) $this->format('L', true);
+				break;
+
+			case 'day':
+				$value = $this->format('d', true);
 				break;
 
 			case 'hour':
@@ -175,16 +170,16 @@ class JDate extends DateTime
 				$value = $this->format('i', true);
 				break;
 
+			case 'second':
+				$value = $this->format('s', true);
+				break;
+
 			case 'month':
 				$value = $this->format('m', true);
 				break;
 
 			case 'ordinal':
 				$value = $this->format('S', true);
-				break;
-
-			case 'second':
-				$value = $this->format('s', true);
 				break;
 
 			case 'week':
@@ -220,10 +215,26 @@ class JDate extends DateTime
 	}
 
 	/**
+	 * Proxy for new JDate().
+	 *
+	 * @param   string  $date  String in a format accepted by strtotime(), defaults to "now".
+	 * @param   mixed   $tz    Time zone to be used for the date.
+	 *
+	 * @return  JDate
+	 *
+	 * @since   11.3
+	 * @throws  JException
+	 */
+	public static function getInstance($date = 'now', $tz = null)
+	{
+		return new JDate($date, $tz);
+	}
+
+	/**
 	 * Translates day of week number to a string.
 	 *
 	 * @param   integer  $day   The numeric day of the week.
-	 * @param   boolean  $abbr  Return the abreviated day string?
+	 * @param   boolean  $abbr  Return the abbreviated day string?
 	 *
 	 * @return  string  The day of the week.
 	 *
@@ -299,7 +310,7 @@ class JDate extends DateTime
 
 		if ($translate)
 		{
-			// Manually modify the month and day strings in the formated time.
+			// Manually modify the month and day strings in the formatted time.
 			if (strpos($return, self::DAY_ABBR) !== false)
 			{
 				$return = str_replace(self::DAY_ABBR, $this->dayToString(parent::format('w'), true), $return);
@@ -347,7 +358,7 @@ class JDate extends DateTime
 	 * Translates month number to a string.
 	 *
 	 * @param   integer  $month  The numeric month of the year.
-	 * @param   boolean  $abbr   If true, return the abreviated month string
+	 * @param   boolean  $abbr   If true, return the abbreviated month string
 	 *
 	 * @return  string  The month of the year.
 	 *
@@ -399,7 +410,7 @@ class JDate extends DateTime
 	{
 		// Deprecation warning.
 		JLog::add('JDate::setOffset() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		// Only set the timezone if the offset exists.
 		if (isset(self::$offsets[(string) $offset]))
 		{
@@ -446,7 +457,7 @@ class JDate extends DateTime
 	{
 		// Deprecation warning.
 		JLog::add('JDate::toFormat() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		// Set time zone to GMT as strftime formats according locale setting.
 		date_default_timezone_set('GMT');
 

@@ -9,6 +9,7 @@
 
 defined('JPATH_PLATFORM') or die();
 
+jimport('joomla.utilities.arrayhelper');
 JLoader::register('JRegistryFormat', dirname(__FILE__) . '/format.php');
 
 /**
@@ -33,14 +34,12 @@ class JRegistry
 	 *
 	 * @param   mixed  $data  The data to bind to the new JRegistry object.
 	 *
-	 * @return  void
-	 *
 	 * @since   11.1
 	 */
 	public function __construct($data = null)
 	{
 		// Instantiate the internal data object.
-		$this->data = new stdClass();
+		$this->data = new stdClass;
 
 		// Optionally load supplied data.
 		if (is_array($data) || is_object($data))
@@ -204,7 +203,7 @@ class JRegistry
 
 		if (empty($instances[$id]))
 		{
-			$instances[$id] = new JRegistry();
+			$instances[$id] = new JRegistry;
 		}
 
 		return $instances[$id];
@@ -335,7 +334,7 @@ class JRegistry
 			{
 				if (!isset($node->$nodes[$i]) && ($i != $n))
 				{
-					$node->$nodes[$i] = new stdClass();
+					$node->$nodes[$i] = new stdClass;
 				}
 				$node = $node->$nodes[$i];
 			}
@@ -415,7 +414,7 @@ class JRegistry
 		{
 			if ((is_array($v) && JArrayHelper::isAssociative($v)) || is_object($v))
 			{
-				$parent->$k = new stdClass();
+				$parent->$k = new stdClass;
 				$this->bindData($parent->$k, $v);
 			}
 			else
@@ -457,7 +456,6 @@ class JRegistry
 	// Following methods are deprecated
 	//
 
-
 	/**
 	 * Load an XML string into the registry into the given namespace [or default if a namespace is not given]
 	 *
@@ -469,13 +467,13 @@ class JRegistry
 	 * @since   11.1
 	 *
 	 * @deprecated  12.1   Use loadString passing XML as the format instead.
-	 * @note        
+	 * @note
 	 */
 	public function loadXML($data, $namespace = null)
 	{
 		// Deprecation warning.
 		JLog::add('JRegistry::loadXML() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		return $this->loadString($data, 'XML');
 	}
 
@@ -496,7 +494,7 @@ class JRegistry
 	{
 		// Deprecation warning.
 		JLog::add('JRegistry::loadINI() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		return $this->loadString($data, 'INI', $options);
 	}
 
@@ -515,7 +513,7 @@ class JRegistry
 	{
 		// Deprecation warning.
 		JLog::add('JRegistry::loadJSON() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		return $this->loadString($data, 'JSON');
 	}
 
@@ -534,7 +532,7 @@ class JRegistry
 	{
 		// Deprecation warning.
 		JLog::add('JRegistry::makeNameSpace() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		//$this->_registry[$namespace] = array('data' => new stdClass());
 		return true;
 	}
@@ -552,7 +550,7 @@ class JRegistry
 	{
 		// Deprecation warning.
 		JLog::add('JRegistry::getNameSpaces() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		//return array_keys($this->_registry);
 		return array();
 	}
@@ -573,7 +571,7 @@ class JRegistry
 	{
 		// Deprecation warning.
 		JLog::add('JRegistry::getValue() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		$parts = explode('.', $path);
 		if (count($parts) > 1)
 		{
@@ -599,7 +597,7 @@ class JRegistry
 	{
 		// Deprecation warning.
 		JLog::add('JRegistry::setValue() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		$parts = explode('.', $path);
 		if (count($parts) > 1)
 		{
@@ -624,7 +622,7 @@ class JRegistry
 	{
 		// Deprecation warning.
 		JLog::add('JRegistry::loadXML() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		return true;
 	}
 }

@@ -117,8 +117,6 @@ class JPaneTabs extends JPane
 	 *
 	 * @param   array  $params  Associative array of values
 	 *
-	 * @return  void
-	 *
 	 * @since   11.1
 	 */
 	function __construct($params = array())
@@ -387,8 +385,10 @@ class JPaneSliders extends JPane
 		$document = JFactory::getDocument();
 
 		$options = '{';
-		$opt['onActive'] = 'function(toggler, i) { toggler.addClass(\'pane-toggler-down\'); toggler.removeClass(\'pane-toggler\');i.addClass(\'pane-down\');i.removeClass(\'pane-hide\'); }';
-		$opt['onBackground'] = 'function(toggler, i) { toggler.addClass(\'pane-toggler\'); toggler.removeClass(\'pane-toggler-down\');i.addClass(\'pane-hide\');i.removeClass(\'pane-down\'); }';
+		$opt['onActive'] = 'function(toggler, i) { toggler.addClass(\'pane-toggler-down\');' .
+			' toggler.removeClass(\'pane-toggler\');i.addClass(\'pane-down\');i.removeClass(\'pane-hide\'); }';
+		$opt['onBackground'] = 'function(toggler, i) { toggler.addClass(\'pane-toggler\');' .
+			' toggler.removeClass(\'pane-toggler-down\');i.addClass(\'pane-hide\');i.removeClass(\'pane-down\'); }';
 		$opt['duration'] = (isset($params['duration'])) ? (int) $params['duration'] : 300;
 		$opt['display'] = (isset($params['startOffset']) && ($params['startTransition'])) ? (int) $params['startOffset'] : null;
 		$opt['show'] = (isset($params['startOffset']) && (!$params['startTransition'])) ? (int) $params['startOffset'] : null;

@@ -160,8 +160,6 @@ class JLanguage extends JObject
 	 * @param   string   $lang   The language
 	 * @param   boolean  $debug  Indicates if language debugging is enabled.
 	 *
-	 * @return  JLanguage
-	 *
 	 * @since   11.1
 	 */
 	public function __construct($lang = null, $debug = false)
@@ -280,9 +278,9 @@ class JLanguage extends JObject
 	 *
 	 * The function checks if $jsSafe is true, then if $interpretBackslashes is true.
 	 *
-	 * @param   string  $string                The string to translate
-	 * @param   bool    $jsSafe                Make the result javascript safe
-	 * @param   bool    $interpretBackSlashes  Interpret \t and \n
+	 * @param   string   $string                The string to translate
+	 * @param   boolean  $jsSafe                Make the result javascript safe
+	 * @param   boolean  $interpretBackSlashes  Interpret \t and \n
 	 *
 	 * @return  string  The translation of the string
 	 *
@@ -290,6 +288,12 @@ class JLanguage extends JObject
 	 */
 	public function _($string, $jsSafe = false, $interpretBackSlashes = true)
 	{
+		// Detect empty string
+		if ($string == '')
+		{
+			return '';
+		}
+
 		$key = strtoupper($string);
 
 		if (isset($this->strings[$key]))
@@ -332,7 +336,7 @@ class JLanguage extends JObject
 			// Javascript filter
 			$string = addslashes($string);
 		}
-		else if ($interpretBackSlashes)
+		elseif ($interpretBackSlashes)
 		{
 			// Interpret \n and \t characters
 			$string = str_replace(array('\\\\', '\t', '\n'), array("\\", "\t", "\n"), $string);
@@ -432,7 +436,7 @@ class JLanguage extends JObject
 	{
 		// Deprecation warning.
 		JLog::add('JLanguage::_getPluralSufficesCallback() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		return $this->getPluralSuffixesCallback();
 	}
 
@@ -861,7 +865,7 @@ class JLanguage extends JObject
 			$lineNumber = 0;
 
 			// Open the file as a stream.
-			$stream = new JStream();
+			$stream = new JStream;
 			$stream->open($filename);
 
 			while (!$stream->eof())
@@ -892,7 +896,7 @@ class JLanguage extends JObject
 					$this->errorfiles[$filename] = $filename . '&#160;: error(s) in line(s) ' . implode(', ', $errors);
 				}
 			}
-			else if ($php_errormsg)
+			elseif ($php_errormsg)
 			{
 				// We didn't find any errors but there's probably a parse notice.
 				$this->errorfiles['PHP' . $filename] = 'PHP parser errors :' . $php_errormsg;
@@ -1130,7 +1134,7 @@ class JLanguage extends JObject
 	 *
 	 * @param   string  $string  The key to check.
 	 *
-	 * @return  bool  True, if the key exists.
+	 * @return  boolean  True, if the key exists.
 	 *
 	 * @since   11.1
 	 */
@@ -1277,7 +1281,7 @@ class JLanguage extends JObject
 	{
 		// Deprecation warning.
 		JLog::add('JLanguage::_parseLanguageFiles() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		return self::parseLanguageFiles($dir);
 	}
 
@@ -1323,7 +1327,7 @@ class JLanguage extends JObject
 	{
 		// Deprecation warning.
 		JLog::add('JLanguage::_parseXMLLanguageFiles() is deprecated.', JLog::WARNING, 'deprecated');
-		
+
 		return self::parseXMLLanguageFiles($dir);
 	}
 

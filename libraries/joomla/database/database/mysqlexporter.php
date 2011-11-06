@@ -63,18 +63,15 @@ class JDatabaseExporterMySQL
 	 *
 	 * Sets up the default options for the exporter.
 	 *
-	 * @return  JDatabaseExporterMySQL
-	 *
 	 * @since   11.1
 	 */
 	public function __construct()
 	{
-		$this->options = new JObject();
+		$this->options = new JObject;
 
 		$this->cache = array('columns' => array(), 'keys' => array());
 
 		// Set up the class defaults:
-
 
 		// Export with only structure
 		$this->withStructure();
@@ -256,7 +253,7 @@ class JDatabaseExporterMySQL
 		{
 			$this->from = array($from);
 		}
-		else if (is_array($from))
+		elseif (is_array($from))
 		{
 			$this->from = $from;
 		}

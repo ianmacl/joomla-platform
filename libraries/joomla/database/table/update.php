@@ -22,11 +22,9 @@ jimport('joomla.database.table');
 class JTableUpdate extends JTable
 {
 	/**
-	 * Contructor
+	 * Constructor
 	 *
 	 * @param   database  &$db  A database connector object
-	 *
-	 * @return  JTableUpdate
 	 *
 	 * @since   11.1
 	 */
@@ -70,14 +68,14 @@ class JTableUpdate extends JTable
 	{
 		if (isset($array['params']) && is_array($array['params']))
 		{
-			$registry = new JRegistry();
+			$registry = new JRegistry;
 			$registry->loadArray($array['params']);
 			$array['params'] = (string) $registry;
 		}
 
 		if (isset($array['control']) && is_array($array['control']))
 		{
-			$registry = new JRegistry();
+			$registry = new JRegistry;
 			$registry->loadArray($array['control']);
 			$array['control'] = (string) $registry;
 		}
@@ -94,10 +92,10 @@ class JTableUpdate extends JTable
 	 *
 	 * @since   11.1
 	 */
-	function find($options = Array())
+	function find($options = array())
 	{
 		$dbo = JFactory::getDBO();
-		$where = Array();
+		$where = array();
 		foreach ($options as $col => $val)
 		{
 			$where[] = $col . ' = ' . $dbo->Quote($val);

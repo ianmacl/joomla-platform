@@ -24,8 +24,6 @@ class JCacheStorageEaccelerator extends JCacheStorage
 	 *
 	 * @param   array  $options  Optional parameters.
 	 *
-	 * @return  JCacheStorageEaccelerator
-	 *
 	 * @since   11.1
 	 */
 	public function __construct($options = array())
@@ -204,7 +202,7 @@ class JCacheStorageEaccelerator extends JCacheStorage
 	 */
 	public function lock($id, $group, $locktime)
 	{
-		$returning = new stdClass();
+		$returning = new stdClass;
 		$returning->locklooped = false;
 
 		$looptime = $locktime * 10;

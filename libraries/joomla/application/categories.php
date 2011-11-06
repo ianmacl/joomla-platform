@@ -95,8 +95,6 @@ class JCategories
 	 *
 	 * @param   array  $options  Array of options
 	 *
-	 * @return  JCategories object
-	 *
 	 * @since   11.1
 	 */
 	public function __construct($options)
@@ -119,7 +117,7 @@ class JCategories
 	 * @param   string  $extension  Name of the categories extension
 	 * @param   array   $options    An array of options
 	 *
-	 * @return  Jcategories         Jcategories object
+	 * @return  JCategories         JCategories object
 	 *
 	 * @since   11.1
 	 */
@@ -189,7 +187,7 @@ class JCategories
 			return $this->_nodes[$id];
 		}
 		// If we processed this $id already and it was not valid, then return null.
-		else if (isset($this->_checkedCategories[$id]))
+		elseif (isset($this->_checkedCategories[$id]))
 		{
 			return null;
 		}
@@ -327,7 +325,7 @@ class JCategories
 						$childrenLoaded = true;
 					}
 				}
-				else if ($result->id == $id || $childrenLoaded)
+				elseif ($result->id == $id || $childrenLoaded)
 				{
 					// Create the JCategoryNode
 					$this->_nodes[$result->id] = new JCategoryNode($result, $this);
@@ -646,8 +644,6 @@ class JCategoryNode extends JObject
 	 * @param   array          $category      The category data.
 	 * @param   JCategoryNode  &$constructor  The tree constructor.
 	 *
-	 * @return  JCategoryNode
-	 *
 	 * @since   11.1
 	 */
 	public function __construct($category = null, &$constructor = null)
@@ -760,10 +756,13 @@ class JCategoryNode extends JObject
 		if (!$this->_allChildrenloaded)
 		{
 			$temp = $this->_constructor->get($this->id, true);
-			$this->_children = $temp->getChildren();
-			$this->_leftSibling = $temp->getSibling(false);
-			$this->_rightSibling = $temp->getSibling(true);
-			$this->setAllLoaded();
+			if ($temp)
+			{
+				$this->_children = $temp->getChildren();
+				$this->_leftSibling = $temp->getSibling(false);
+				$this->_rightSibling = $temp->getSibling(true);
+				$this->setAllLoaded();
+			}
 		}
 
 		if ($recursive)
@@ -880,7 +879,7 @@ class JCategoryNode extends JObject
 	{
 		if (!($this->params instanceof JRegistry))
 		{
-			$temp = new JRegistry();
+			$temp = new JRegistry;
 			$temp->loadString($this->params);
 			$this->params = $temp;
 		}
@@ -899,7 +898,7 @@ class JCategoryNode extends JObject
 	{
 		if (!($this->metadata instanceof JRegistry))
 		{
-			$temp = new JRegistry();
+			$temp = new JRegistry;
 			$temp->loadString($this->metadata);
 			$this->metadata = $temp;
 		}

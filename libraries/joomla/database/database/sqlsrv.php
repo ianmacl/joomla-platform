@@ -69,8 +69,6 @@ class JDatabaseSQLSrv extends JDatabase
 	 *
 	 * @param   array  $options  List of options used to configure the connection
 	 *
-	 * @return  void
-	 *
 	 * @since   11.1
 	 */
 	protected function __construct($options)
@@ -141,8 +139,6 @@ class JDatabaseSQLSrv extends JDatabase
 
 	/**
 	 * Destructor.
-	 *
-	 * @return  void
 	 *
 	 * @since   11.1
 	 */
@@ -215,10 +211,9 @@ class JDatabaseSQLSrv extends JDatabase
 		$result = str_replace('\"', '"', $result);
 		//$result = str_replace("\\", "''", $result);
 
-
 		if ($extra)
 		{
-			// We need the below str_replace since the search in sql server doesnt recognize _ character.
+			// We need the below str_replace since the search in sql server doesn't recognize _ character.
 			$result = str_replace('_', '[_]', $result);
 		}
 
@@ -302,7 +297,7 @@ class JDatabaseSQLSrv extends JDatabase
 			throw new JDatabaseException(JText::_('JLIB_DATABASE_ERROR_MISSING_EXPORTER'));
 		}
 
-		$o = new JDatabaseExporterSQLAzure();
+		$o = new JDatabaseExporterSQLAzure;
 		$o->setDbo($this);
 
 		return $o;
@@ -324,7 +319,7 @@ class JDatabaseSQLSrv extends JDatabase
 			throw new JDatabaseException(JText::_('JLIB_DATABASE_ERROR_MISSING_IMPORTER'));
 		}
 
-		$o = new JDatabaseImporterSQLAzure();
+		$o = new JDatabaseImporterSQLAzure;
 		$o->setDbo($this);
 
 		return $o;
@@ -374,8 +369,8 @@ class JDatabaseSQLSrv extends JDatabase
 	/**
 	 * Retrieves field information about the given tables.
 	 *
-	 * @param   mixed  $tables    A table name or a list of table names.
-	 * @param   bool   $typeOnly  True to only return field types.
+	 * @param   mixed    $tables    A table name or a list of table names.
+	 * @param   boolean  $typeOnly  True to only return field types.
 	 *
 	 * @return  array  An array of fields by table.
 	 *
@@ -441,7 +436,7 @@ class JDatabaseSQLSrv extends JDatabase
 	 *
 	 * @param   string  $table  The name of the table.
 	 *
-	 * @return  array  An arry of the column specification for the table.
+	 * @return  array  An array of the column specification for the table.
 	 *
 	 * @since   11.1
 	 * @throws  JDatabaseException

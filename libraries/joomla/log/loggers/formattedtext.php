@@ -69,8 +69,6 @@ class JLoggerFormattedText extends JLogger
 	 *
 	 * @param   array  &$options  Log object options.
 	 *
-	 * @return  void
-	 *
 	 * @since   11.1
 	 */
 	public function __construct(array &$options)
@@ -111,8 +109,6 @@ class JLoggerFormattedText extends JLogger
 
 	/**
 	 * Destructor.
-	 *
-	 * @return  void
 	 *
 	 * @since   11.1
 	 */
@@ -187,14 +183,14 @@ class JLoggerFormattedText extends JLogger
 		// Write the new entry to the file.
 		if (!fputs($this->file, $line . "\n"))
 		{
-			throw new LogException();
+			throw new LogException;
 		}
 	}
 
 	/**
 	 * Method to generate the log file header.
 	 *
-	 * @return  void
+	 * @return  string  The log file header
 	 *
 	 * @since   11.1
 	 */
@@ -204,7 +200,6 @@ class JLoggerFormattedText extends JLogger
 		$head = array();
 
 		// Build the log file header.
-
 
 		// If the no php flag is not set add the php die statement.
 		if (empty($this->options['text_file_no_php']))
@@ -257,7 +252,7 @@ class JLoggerFormattedText extends JLogger
 		{
 			if (!fputs($this->file, $head))
 			{
-				throw new LogException();
+				throw new LogException;
 			}
 		}
 	}

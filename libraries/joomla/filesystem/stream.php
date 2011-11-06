@@ -91,7 +91,7 @@ class JStream extends JObject
 	 * @var    array
 	 * @since  11.1
 	 */
-	protected $filters = Array();
+	protected $filters = array();
 
 	/**
 	 * File Handle
@@ -131,11 +131,9 @@ class JStream extends JObject
 	/**
 	 * Constructor
 	 *
-	 * @param   string  $writeprefix  Prefix of the stream (optional). Unlike the JPATH_*, this has a final path seperator!
+	 * @param   string  $writeprefix  Prefix of the stream (optional). Unlike the JPATH_*, this has a final path separator!
 	 * @param   string  $readprefix   The read prefix (optional).
 	 * @param   array   $context      The context options (optional).
-	 *
-	 * @return  JStream
 	 *
 	 * @since   11.1
 	 */
@@ -149,8 +147,6 @@ class JStream extends JObject
 
 	/**
 	 * Destructor
-	 *
-	 * @return  void
 	 *
 	 * @since   11.1
 	 */
@@ -170,11 +166,11 @@ class JStream extends JObject
 	 *
 	 * @param   string    $filename              Filename
 	 * @param   string    $mode                  Mode string to use
-	 * @param   bool      $use_include_path      Use the PHP include path
+	 * @param   boolean   $use_include_path      Use the PHP include path
 	 * @param   resource  $context               Context to use when opening
-	 * @param   bool      $use_prefix            Use a prefix to open the file
-	 * @param   bool      $relative              Filename is a relative path (if false, strips JPATH_ROOT to make it relative)
-	 * @param   bool      $detectprocessingmode  Detect the processing method for the file and use the appropriate function
+	 * @param   boolean   $use_prefix            Use a prefix to open the file
+	 * @param   boolean   $relative              Filename is a relative path (if false, strips JPATH_ROOT to make it relative)
+	 * @param   boolean   $detectprocessingmode  Detect the processing method for the file and use the appropriate function
 	 *                                           to handle output automatically
 	 *
 	 * @return  boolean
@@ -209,7 +205,7 @@ class JStream extends JObject
 			// We have a scheme! force the method to be f
 			$this->processingmethod = 'f';
 		}
-		else if ($detectprocessingmode)
+		elseif ($detectprocessingmode)
 		{
 			$ext = strtolower(JFile::getExt($this->filename));
 
@@ -260,7 +256,7 @@ class JStream extends JObject
 					$this->_fh = fopen($filename, $mode, $use_include_path, $context);
 				}
 				// One provided at initialisation
-				else if ($this->_context)
+				elseif ($this->_context)
 				{
 					$this->_fh = fopen($filename, $mode, $use_include_path, $this->_context);
 				}
@@ -787,7 +783,7 @@ class JStream extends JObject
 				$retval = false;
 				$remaining = 0;
 			}
-			else if ($res === 0)
+			elseif ($res === 0)
 			{
 				// Wrote nothing?
 				$remaining = 0;
@@ -1169,7 +1165,6 @@ class JStream extends JObject
 		$exists = file_exists($dest);
 		$context_support = version_compare(PHP_VERSION, '5.3', '>='); // 5.3 provides context support
 
-
 		if ($exists && !$context_support)
 		{
 			// The file exists and there is no context support.
@@ -1218,7 +1213,7 @@ class JStream extends JObject
 				// Use the provided context
 				$res = @copy($src, $dest, $context);
 			}
-			else if ($context_support && $this->_context)
+			elseif ($context_support && $this->_context)
 			{
 				// Use the objects context
 				$res = @copy($src, $dest, $this->_context);
@@ -1275,7 +1270,7 @@ class JStream extends JObject
 			// Use the provided context
 			$res = @rename($src, $dest, $context);
 		}
-		else if ($this->_context)
+		elseif ($this->_context)
 		{
 			// Use the object's context
 			$res = @rename($src, $dest, $this->_context);
@@ -1327,7 +1322,7 @@ class JStream extends JObject
 			// Use the provided context
 			$res = @unlink($filename, $context);
 		}
-		else if ($this->_context)
+		elseif ($this->_context)
 		{
 			// Use the object's context
 			$res = @unlink($filename, $this->_context);
