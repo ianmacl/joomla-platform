@@ -55,7 +55,7 @@ var populateMenu = function() {
 window.addEvent('domready', function() {
 	var urlParts = document.URL.split('?', 2);
 	state = {};
-	here = urlParts[0];
+	//here = urlParts[0];
 	here = "https://github.com/joomla/joomla-platform/tree/staging/";
 	if (urlParts.length > 1)
 	{
