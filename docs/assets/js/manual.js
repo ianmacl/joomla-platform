@@ -3,6 +3,7 @@ var populateWindow = function(link) {
 		"url": here + 'docs/manual/en-US/' + link,
 		"method": "get",
 		"onSuccess": function(response) {
+			console.log(response);
 			$('docwin').set('html', marked(window.atob(response.content)));
 		}
 	}).send();
@@ -56,7 +57,8 @@ window.addEvent('domready', function() {
 	var urlParts = document.URL.split('?', 2);
 	state = {};
 	//here = urlParts[0];
-	here = "https://api.github.com/repos/joomla/joomla-platform/contents/";
+	here = "https://raw.github.com/joomla/joomla-platform/master/";
+
 	if (urlParts.length > 1)
 	{
 		var currentDoc = urlParts[1];
