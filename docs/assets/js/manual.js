@@ -57,7 +57,7 @@ window.addEvent('domready', function() {
 	var urlParts = document.URL.split('?', 2);
 	state = {};
 	//here = urlParts[0];
-	here = "https://raw.github.com/joomla/joomla-platform/master/";
+	here = "https://api.github.com/repos/joomla/joomla-platform/contents/";
 
 	if (urlParts.length > 1)
 	{
