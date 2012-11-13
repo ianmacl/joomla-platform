@@ -1,9 +1,9 @@
 var populateWindow = function(link) {
-	var markdownRequest = new Request({
+	var markdownRequest = new Request.JSON({
 		"url": here + 'docs/manual/en-US/' + link,
 		"method": "get",
 		"onSuccess": function(response) {
-			$('docwin').set('html', marked(response));
+			$('docwin').set('html', marked(window.atob(response.content)));
 		}
 	}).send();
 
@@ -56,7 +56,7 @@ window.addEvent('domready', function() {
 	var urlParts = document.URL.split('?', 2);
 	state = {};
 	//here = urlParts[0];
-	here = "https://github.com/joomla/joomla-platform/tree/staging/";
+	here = "https://api.github.com/repos/joomla/joomla-platform/contents/";
 	if (urlParts.length > 1)
 	{
 		var currentDoc = urlParts[1];
@@ -76,7 +76,7 @@ window.addEvent('domready', function() {
 			return that;
 		}
 	})
-	populateMenu();
+	//populateMenu();
 	populateWindow(currentDoc);
 
 	document.id('main').addEvent('click:relay(a)', function (event, target) {
