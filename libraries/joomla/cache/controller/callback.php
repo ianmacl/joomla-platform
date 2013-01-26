@@ -15,6 +15,7 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Platform
  * @subpackage  Cache
  * @since       11.1
+ * @deprecated  14.1
  */
 class JCacheControllerCallback extends JCacheController
 {
@@ -117,7 +118,7 @@ class JCacheControllerCallback extends JCacheController
 
 			$cached = unserialize(trim($data));
 			$coptions['mergehead'] = isset($woptions['mergehead']) ? $woptions['mergehead'] : 0;
-			$output = ($wrkarounds == false) ? $cached['output'] : JCache::getWorkarounds($cached['output'], $coptions);
+			$output = ($wrkarounds == false) ? $cached['output'] : JCacheLegacy::getWorkarounds($cached['output'], $coptions);
 			$result = $cached['result'];
 
 			if ($locktest->locked == true)
@@ -168,7 +169,7 @@ class JCacheControllerCallback extends JCacheController
 			$coptions['nohead'] = isset($woptions['nohead']) ? $woptions['nohead'] : 1;
 			$coptions['nomodules'] = isset($woptions['nomodules']) ? $woptions['nomodules'] : 1;
 
-			$cached['output'] = ($wrkarounds == false) ? $output : JCache::setWorkarounds($output, $coptions);
+			$cached['output'] = ($wrkarounds == false) ? $output : JCacheLegacy::setWorkarounds($output, $coptions);
 			$cached['result'] = $result;
 
 			// Store the cache data

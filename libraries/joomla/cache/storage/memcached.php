@@ -16,6 +16,7 @@ defined('JPATH_PLATFORM') or die;
  * @subpackage  Cache
  * @see         http://php.net/manual/en/book.memcached.php
  * @since       12.1
+ * @deprecated  14.1
  */
 class JCacheStorageMemcached extends JCacheStorage
 {

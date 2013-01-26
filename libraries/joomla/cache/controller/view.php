@@ -15,6 +15,7 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Platform
  * @subpackage  Cache
  * @since       11.1
+ * @deprecated  14.1
  */
 class JCacheControllerView extends JCacheController
 {
@@ -65,7 +66,7 @@ class JCacheControllerView extends JCacheController
 
 			if ($wrkarounds === true)
 			{
-				echo JCache::getWorkarounds($data);
+				echo JCacheLegacy::getWorkarounds($data);
 			}
 			else
 			{
@@ -107,7 +108,7 @@ class JCacheControllerView extends JCacheController
 			 */
 			$cached = array();
 
-			$cached = $wrkarounds == true ? JCache::setWorkarounds($data) : $data;
+			$cached = $wrkarounds == true ? JCacheLegacy::setWorkarounds($data) : $data;
 
 			// Store the cache data
 			$this->cache->store(serialize($cached), $id);

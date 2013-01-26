@@ -10,13 +10,14 @@
 defined('JPATH_PLATFORM') or die;
 
 /**
- * Joomla! Cache base object
+ * Joomla! Cache Legacy base object
  *
  * @package     Joomla.Platform
  * @subpackage  Cache
- * @since       11.1
+ * @since       13.1
+ * @deprecated  14.1
  */
-class JCache
+class JCacheLegacy
 {
 	/**
 	 * @var    object  Storage handler
@@ -73,7 +74,7 @@ class JCache
 	 * @param   string  $type     The cache object type to instantiate
 	 * @param   array   $options  The array of options
 	 *
-	 * @return  JCache  A JCache object
+	 * @return  JCacheController  A JCacheController object
 	 *
 	 * @since   11.1
 	 */

@@ -15,6 +15,7 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Platform
  * @subpackage  Cache
  * @since       11.1
+ * @deprecated  14.1
  */
 class JCacheStorage
 {
@@ -88,7 +89,6 @@ class JCacheStorage
 		{
 			$this->_threshold = $this->_now - $this->_lifetime;
 		}
-
 	}
 
 	/**

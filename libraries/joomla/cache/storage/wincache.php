@@ -16,6 +16,7 @@ defined('JPATH_PLATFORM') or die;
  * @subpackage  Cache
  * @see         http://php.net/manual/en/book.wincache.php
  * @since       11.1
+ * @deprecated  14.1
  */
 class JCacheStorageWincache extends JCacheStorage
 {

@@ -16,6 +16,7 @@ defined('JPATH_PLATFORM') or die;
  * @subpackage  Cache
  * @link        http://xcache.lighttpd.net/
  * @since       11.1
+ * @deprecated  14.1
  */
 class JCacheStorageXcache extends JCacheStorage
 {

@@ -241,6 +241,7 @@ abstract class JFactory
 	 * @return  JCacheController object
 	 *
 	 * @see     JCache
+	 * @deprecated  14.1
 	 */
 	public static function getCache($group = '', $handler = 'callback', $storage = null)
 	{
@@ -259,7 +260,7 @@ abstract class JFactory
 			$options['storage'] = $storage;
 		}
 
-		$cache = JCache::getInstance($handler, $options);
+		$cache = JCacheLegacy::getInstance($handler, $options);
 
 		self::$cache[$hash] = $cache;
 

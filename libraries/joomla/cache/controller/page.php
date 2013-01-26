@@ -15,6 +15,7 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Platform
  * @subpackage  Cache
  * @since       11.1
+ * @deprecated  14.1
  */
 class JCacheControllerPage extends JCacheController
 {
@@ -94,7 +95,7 @@ class JCacheControllerPage extends JCacheController
 
 			if ($wrkarounds === true)
 			{
-				$data = JCache::getWorkarounds($data);
+				$data = JCacheLegacy::getWorkarounds($data);
 			}
 
 			$this->_setEtag($id);
@@ -136,7 +137,7 @@ class JCacheControllerPage extends JCacheController
 		// Only attempt to store if page data exists
 		if ($data)
 		{
-			$data = $wrkarounds == false ? $data : JCache::setWorkarounds($data);
+			$data = $wrkarounds == false ? $data : JCacheLegacy::setWorkarounds($data);
 
 			if ($this->_locktest->locked == false)
 			{
@@ -166,7 +167,7 @@ class JCacheControllerPage extends JCacheController
 	 */
 	protected function _makeId()
 	{
-		return JCache::makeId();
+		return JCacheLegacy::makeId();
 	}
 
 	/**

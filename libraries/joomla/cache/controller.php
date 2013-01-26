@@ -15,6 +15,7 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Platform
  * @subpackage  Cache
  * @since       11.1
+ * @deprecated  14.1
  */
 class JCacheController
 {
@@ -39,7 +40,7 @@ class JCacheController
 	 */
 	public function __construct($options)
 	{
-		$this->cache = new JCache($options);
+		$this->cache = new JCacheLegacy($options);
 		$this->options = & $this->cache->_options;
 
 		// Overwrite default options with given options
@@ -75,7 +76,7 @@ class JCacheController
 	 * @param   string  $type     The cache object type to instantiate; default is output.
 	 * @param   array   $options  Array of options
 	 *
-	 * @return  JCache  A JCache object
+	 * @return  JCacheController  A JCacheController object
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
